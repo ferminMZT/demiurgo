@@ -1,5 +1,5 @@
 /* 
-  Bateria.h
+  \file Bateria.h
 
   Clase creada para contener todos y cada uno de los ejemplos que se van a manejar,
   estando cada uno de ellos compuesto por un monton de caracteristicas (features)
@@ -18,7 +18,7 @@ class Bateria
  public:
 
 	// Constructor a partir de un fichero
-	Bateria(char *nomFich);
+	Bateria(const char *nomFich);
 	
 	// Destructor: su uso es fundamental!
    ~Bateria();

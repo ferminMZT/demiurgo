@@ -33,11 +33,6 @@ class Carro : public Problema
 		pilaEvaluacion = 0;
 	}
   
-	char *getNombre()
-	{ 
-		return nombre; 
-	}
-
 	Flt fitness(ptrIndividuo pInd, ptrConjNodos pConjVariables);
 
 	Flt distancia(ptrIndividuo pInd1, ptrIndividuo pInd2, ptrConjNodos pConjVariables)
@@ -45,13 +40,11 @@ class Carro : public Problema
 		return .0; 
 	}
 
-	Flt testeaProblema(ptrIndividuo pInd, ptrConjNodos pConjVariables, char *nomFichTest);
+	Flt testeaProblema(ptrIndividuo pInd, ptrConjNodos pConjVariables, const char *nomFichTest);
 
 
  private:
 
-	// Nombre del problema a resolver
-	char *nombre;	
 	// Numero de puntos para x, y, z en [-5.12, +5.12]
 	int nPtos; 		
 

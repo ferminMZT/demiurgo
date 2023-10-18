@@ -1,16 +1,15 @@
-/*
-  Espiral.h
-  Problema 1
-  El conocido problema de la clasificacion de las espirales...
+/**
+ * \file Espiral.h
+ * Problema 1
+ * El conocido problema de la clasificacion de las espirales...
 */
 
 #ifndef ESPIRAL_H
 #define ESPIRAL_H
 
-#include "../Piposeco.h"
-#include "../Variable.h"
 #include "Problema.h"
-
+#include "../Variable.h"
+#include "../Piposeco.h"
 
 class Espiral : public Problema
 {
@@ -28,25 +27,17 @@ class Espiral : public Problema
 		pilaEvaluacion = 0;
 	}
 
-	char *getNombre()
-	{ 
-		return nombre; 
-	}
-
 	Flt fitness(ptrIndividuo pInd, ptrConjNodos pConjVariables);
 
 	Flt distancia(ptrIndividuo pInd1, ptrIndividuo pInd2, ptrConjNodos pConjVariables);
 	
-	Flt testeaProblema(ptrIndividuo pInd, ptrConjNodos pConjVariables, char *nomFichTest)
+	Flt testeaProblema(ptrIndividuo pInd, ptrConjNodos pConjVariables, const char *nomFichTest)
 	{ 
 		return 0.0; 
 	}
 
 
  private:
-
-	// Nombre del problema a resolver
-	char *nombre;
 
 	// Numero de puntos a clasificar, que son 97 * 2
 	int numPuntos;

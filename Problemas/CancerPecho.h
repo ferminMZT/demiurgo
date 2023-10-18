@@ -2,41 +2,62 @@
 // CancerPecho__________________________________________________________________
 // Tenemos 569 casos de cancer de pecho (de Wisconsin) lirios para clasificar en 2 clases distintas
 // usando 30 atributos
-class CancerPecho : public problema
+
+#ifndef CANCERPECHO_H
+#define CANCERPECHO_H
+
+#include "Problema.h"
+#include "../Bateria.h"
+#include "../Variable.h"
+#include "../Piposeco.h"
+
+class CancerPecho : public Problema
 {
  public:
-  CancerPecho()
-  {
-   nombre       = "El cancer de pecho de Wisconsin";
-   batcancer     = new bateria("cancerPecho.dat");
-   numEjemplos  = batcancer->getNumEjemplos();
-   numAtributos = batcancer->getNumAtributos();
-  }
- ~CancerPecho()
-  {
-   delete batcancer;
-   numEjemplos = numAtributos = 0;
-   pilaEvaluacion = 0;
-  }
-  char *getNombre()
-  { return nombre; }
-  flt fitness(ptrIndividuo pInd, ptrConjNodos pConjVariables);
-  flt distancia(ptrIndividuo pInd1, ptrIndividuo pInd2, ptrConjNodos pConjVariables)
-  { return 0.0; }
-  flt testeaProblema(ptrIndividuo pInd, ptrConjNodos pConjVariables, char *nomFichTest)
-  { return 0.0; }
+
+    CancerPecho()
+    {
+        nombre = "El cancer de pecho de Wisconsin";
+        batcancer = new Bateria("cancerPecho.dat");
+        numEjemplos = batcancer->getNumEjemplos();
+        numAtributos = batcancer->getNumAtributos();
+    }
+
+    ~CancerPecho()
+    {
+        if (batcancer != nullptr) {
+            delete batcancer;
+            batcancer = nullptr;
+        }
+        numEjemplos = numAtributos = 0;
+        if (pilaEvaluacion != nullptr) {
+            delete pilaEvaluacion;
+            pilaEvaluacion = nullptr;
+        }        
+    }
+
+    Flt fitness(ptrIndividuo pInd, ptrConjNodos pConjVariables);
+    Flt distancia(ptrIndividuo pInd1, ptrIndividuo pInd2, ptrConjNodos pConjVariables)
+    { return 0.0; }
+    Flt testeaProblema(ptrIndividuo pInd, ptrConjNodos pConjVariables, const char *nomFichTest)
+    { return 0.0; }
+
 
  private:
-  char     *nombre;		// Nombre del problema a resolver
-  bateria  *batcancer;		// Bateria de ejemplos a clasificar
-  int       numEjemplos;      	// Numero de ejemplos de la bateria
-  int       numAtributos;	// Numero de atributos de cada ejemplo
-  variable *var;
-  flt       errTodasMuestras;
-  int       ne, na;
-  flt       valEvaluado, valClase;
-  piposeco *pilaEvaluacion;	// Pila piposeco para la evaluacion
+
+    // Bateria de ejemplos a clasificar.
+    Bateria *batcancer;
+    // Numero de ejemplos de la bateria.
+    int numEjemplos;
+    // Numero de atributos de cada ejemplo.     	
+    int numAtributos;
+    Variable *var;
+    Flt errTodasMuestras;
+    int ne, na;
+    Flt valEvaluado, valClase;
+    // Pila piposeco para la evaluacion.
+    Piposeco *pilaEvaluacion;
 
 };
 
-#endif
+#endif // CANCERPECHO_H

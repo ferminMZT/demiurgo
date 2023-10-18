@@ -9,6 +9,7 @@
 
 
 #include "Operacion.h"
+#include <math.h>
 
 
 class OperacionSeno : public Operacion
@@ -36,7 +37,7 @@ class OperacionSeno : public Operacion
 		return (Flt) sin(*a); 
 	}
   
-	ostream & operator << (ostream &salida)
+	std::ostream & operator << (std::ostream &salida)
 	{ 
 		return salida << "sin"; 
 	}

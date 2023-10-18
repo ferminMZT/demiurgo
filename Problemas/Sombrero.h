@@ -1,22 +1,18 @@
 /**
-  Sombrero.h
-  Problema ???
-  Regresion simbolica de la funcion 3D f(x, y) = sin(x^2 + y^2)/(x^2 + y^2)
-  con 20*20 puntos equiespaciados en el entorno [-3, +3]
-*/
-
+ * \file Sombrero.h
+ * Problema ???
+ * Regresion simbolica de la funcion 3D f(x, y) = sin(x^2 + y^2)/(x^2 + y^2)
+ * con 20*20 puntos equiespaciados en el entorno [-3, +3].
+ */
 
 #ifndef SOMBRERO_H
 #define SOMBRERO_H
 
+#include "Problema.h"
+#include "../Variable.h"
+#include "../Piposeco.h"
 
 #include <math.h>
-
-
-#include "Problema.h"
-#include "../Piposeco.h"
-#include "../Variable.h"
-
 
 class Sombrero : public Problema
 {
@@ -26,11 +22,6 @@ class Sombrero : public Problema
 	Sombrero();
 
 	~Sombrero();
-
-	char *getNombre()
-	{ 
-		return nombre; 
-	}
   
 	Flt fitness(ptrIndividuo pInd, ptrConjNodos pConjVariables);
 
@@ -39,7 +30,7 @@ class Sombrero : public Problema
 		return 0.0; 
 	}
 
-	Flt testeaProblema(ptrIndividuo pInd, ptrConjNodos pConjVariables, char *nomFichTest)
+	Flt testeaProblema(ptrIndividuo pInd, ptrConjNodos pConjVariables, const char *nomFichTest)
 	{ 
 		return 0.0; 
 	}
@@ -47,13 +38,10 @@ class Sombrero : public Problema
 
  private:
   
-	// Nombre del problema a resolver
-	char *nombre;		
-	
 	// Indices de la funcion
 	int x, y;
 
-	// Tamaño del lado de la matriz cuadrada de valores
+	// Tamaï¿½o del lado de la matriz cuadrada de valores
 	int tam;
 
 	// Variables para cargar individuos

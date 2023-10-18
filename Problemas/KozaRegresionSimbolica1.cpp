@@ -40,7 +40,7 @@ Flt KozaRegresionSimbolica1::fitness(ptrIndividuo pInd, ptrConjNodos pConjVariab
  Recordar que esto es una regresion simbolica!!!
 */
 
-Flt KozaRegresionSimbolica1::testeaProblema(ptrIndividuo pInd, ptrConjNodos pConjVariables, char *nomFichTest)
+Flt KozaRegresionSimbolica1::testeaProblema(ptrIndividuo pInd, ptrConjNodos pConjVariables, const char *nomFichTest)
 {
  // Se construye la pila piposeco a partir del individuo dado, sobre la cual se evaluara todo
  pilaEvaluacion = new Piposeco(pInd->getArbol(), pInd->getNumNodos());

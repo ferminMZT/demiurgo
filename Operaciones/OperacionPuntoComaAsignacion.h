@@ -57,7 +57,7 @@ class OperacionAsignacionComa : public Operacion
 		return *exprDer;
 	}
 
-	ostream & operator << (ostream &salida)
+	std::ostream & operator << (std::ostream &salida)
 	{ 
 		return salida << ";"; 
 	}

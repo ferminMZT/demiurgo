@@ -7,13 +7,11 @@
 #ifndef SDI000_H
 #define SDI000_H
 
-#include <vector>
-#include <string>
-
-#include "../Piposeco.h"
-#include "../Variable.h"
-
 #include "Problema.h"
+#include "../Variable.h"
+#include "../Piposeco.h"
+
+#include <vector>
 
 Flt fG(Flt X);
 
@@ -35,22 +33,14 @@ class SDI000 : public Problema
 
 	}
 
-	char *getNombre()
-	{ 
-		return (char *) nombre.c_str(); 
-	}
-
 	Flt fitness(ptrIndividuo pInd, ptrConjNodos pConjVariables);
 
 	Flt distancia(ptrIndividuo pInd1, ptrIndividuo pInd2, ptrConjNodos pConjVariables);
 	
-	Flt testeaProblema(ptrIndividuo pInd, ptrConjNodos pConjVariables, char *nomFichTest);
+	Flt testeaProblema(ptrIndividuo pInd, ptrConjNodos pConjVariables, const char *nomFichTest);
 
 
  private:
-
-	/// Nombre del problema.
-	 std::string nombre;
 
 	/// Numero de puntos procesados en el dominio.
 	int numPtos;

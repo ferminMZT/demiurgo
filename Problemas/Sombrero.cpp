@@ -5,6 +5,8 @@
 
 #include "Sombrero.h"
 
+#include <math.h>
+
 
 Sombrero::Sombrero()
 {
@@ -20,7 +22,7 @@ Sombrero::Sombrero()
 	if(!valores)					
 	{
 		DEBUG("Error!");
-		cout << "No asigna memoria a la matriz de datos!!!" << endl;
+		std::cout << "No asigna memoria a la matriz de datos!!!" << std::endl;
 		exit(-1);
 	}
 
@@ -32,7 +34,7 @@ Sombrero::Sombrero()
 		if(!valores[y])		
 		{
 			DEBUG("Error!");
-			cout << "No asigna memoria al vector " << y << endl;
+			std::cout << "No asigna memoria al vector " << y << std::endl;
 			exit(-1);
 		}
 	}
@@ -51,24 +53,24 @@ Sombrero::Sombrero()
 }
 
 Sombrero::~Sombrero()
-{
- for(y = 0; y < tam; y++)
- {
-	 if(valores[y])
-	 {
-		delete [] valores[y];
-		valores[y] = 0;
-	 }
- }
+{	
+	for(y = 0; y < tam; y++)
+	{
+		if(valores[y])
+		{
+			delete [] valores[y];
+			valores[y] = 0;
+		}
+	}
 
- if(valores)
- {
-	delete [] valores;
-	valores = 0;
- }
+	if(valores)
+	{
+		delete [] valores;
+		valores = 0;
+	}
 
- x = y = tam = 0;
- pilaEvaluacion = 0;
+	x = y = tam = 0;
+	pilaEvaluacion = 0;
 }
 
 Flt Sombrero::fitness(ptrIndividuo pInd, ptrConjNodos pConjVariables)

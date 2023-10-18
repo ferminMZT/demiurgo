@@ -31,7 +31,7 @@ Poblacion::~Poblacion()
 // Como paso PREVIO OBLIGATORIO, hay que CONECTAR LA FUNCION DE ERROR EXTERNA!!!
 // La mejoro utilizando lo que denomino SUPRA-ENRIQUECIMIENTO INCREMENTAL:
 // Por ejemplo, para una poblacion de 1500 individuos, con factor de enriquecimiento
-// de 2 y tamaño de elite de 100 individuos; se crean 1500/100 = 15 poblaciones
+// de 2 y tamaÃ±o de elite de 100 individuos; se crean 1500/100 = 15 poblaciones
 // gigantes de 1500 * 2 = 3000 individuos, de los cuales nos quedamos con los 100
 // mejores, hasta llegar a completar los 1500 que nos hacen falta.
 void Poblacion::creaPoblacionInicial(int nInd, int fEnr, int nElite)
@@ -49,7 +49,7 @@ void Poblacion::creaPoblacionInicial(int nInd, int fEnr, int nElite)
  // Inicialmente creo un conjunto grande inicial de cardinal numIndividuos*FACT_ENRIQ; calculo el error de cada
  // miembro y segun este, los ordeno crecientemente.
  // Y de cada poblacion gigante me quedo con los nElite individuos primeros!!!
- int tGrande = numIndividuos * factorEnriq;				// Tamaño del conjunto grande
+ int tGrande = numIndividuos * factorEnriq;				// TamaÃ±o del conjunto grande
  Conjunto<ptrIndividuo> *cGrande = new Conjunto<ptrIndividuo>(tGrande);	// El conjunto grande de individuos
  int nIndCreados;	// Individuos ya creados
  int n;                 // Indice para individuos
@@ -74,7 +74,7 @@ void Poblacion::creaPoblacionInicial(int nInd, int fEnr, int nElite)
    (*conjIndividuos)[nIndCreados + n] = new Individuo( *((*cGrande)[n]) );
    //(*conjIndividuos)[nIndCreados + n]->asignaPila();
   }
-  cout << (nIndCreados + n) << "/" << numIndividuos << endl;
+  std::cout << (nIndCreados + n) << "/" << numIndividuos << std::endl;
   // Y destruyo la chusma de la poblacion gigante ENTERA, ya que la elite ya ha sido copiada
   for(n = 0; n < tGrande; n++)
    delete (*cGrande)[n];
@@ -115,14 +115,14 @@ int Poblacion::generacionA()
  int        numIteraciones = 0;	// Numero de iteraciones para llevar a cabo la generacion
  int        numNuevos = 0;	// Numero de nuevos individuos creados en la generacion
  Individuo *padre,   *madre;	// Los progenitores
- Individuo *hijo;    		// El retoño, mayormente parecido a su popo
+ Individuo *hijo;    		// El retoÃ±o, mayormente parecido a su popo
  int        posPadre, posMadre;	// Posiciones ocupadas por los padres en la poblacion
  Flt        errPadre, errMadre;	// Los errores de los padres
  Flt        errHijo;		// El error del fiu
 
  while(numIteraciones != numIndividuos && !errorAlcanzado())
  {
-  //cout << numIteraciones << "\b\r";
+  // std::cout << numIteraciones << "\b\r";
   // Saco 2 bolitas con los numeros de los padres
   posPadre = RND(numIndividuos);
   posMadre = RND(numIndividuos);
@@ -180,7 +180,7 @@ int Poblacion::generacionA()
   numIteraciones++;
  }
  numGeneraciones++;
- //cout << " [Nuevos: " << numNuevos << " (" << 100.*numNuevos/numIndividuos << "%)] " << endl;
+ // std::cout << " [Nuevos: " << numNuevos << " (" << 100.*numNuevos/numIndividuos << "%)] " << std::endl;
  return numNuevos;
 }
 
@@ -191,10 +191,10 @@ int Poblacion::generacionAI()
  int        numIteraciones = 0;	// Numero de iteraciones para llevar a cabo la generacion
  int        numNuevos      = 0;	// Numero de nuevos individuos creados en la generacion
  int        numMutados     = 0; // Numero total de mutaciones en esta generacion
- int        numMutadosOK   = 0; // Numero de mutaciones aceptadas
+ // int        numMutadosOK   = 0; // Numero de mutaciones aceptadas
  int        hayMutacion;	// Para saber cuando se da una mutacion
  Individuo *padre,   *madre;	// Los progenitores
- Individuo *hijo;    		// El retoño, mayormente parecido a su popo
+ Individuo *hijo;    		// El retoÃ±o, mayormente parecido a su popo
  int        posPadre, posMadre;	// Posiciones ocupadas por los padres en la poblacion
  Flt        errPadre, errMadre;	// Los errores de los padres
  Flt        errHijo;		// El error del fiu
@@ -297,7 +297,7 @@ int Poblacion::generacionAI()
   numIteraciones++;
  }
  numGeneraciones++;
- //cout << " [Nuevos: " << numNuevos << " (" << 100.*numNuevos/numIndividuos << "%)] " << endl;
+ // std::cout << " [Nuevos: " << numNuevos << " (" << 100.*numNuevos/numIndividuos << "%)] " << std::endl;
  return numNuevos;
 }
 
@@ -311,8 +311,8 @@ int Poblacion::generacionB()
  int        numMutadosOK   = 0; // Numero de mutaciones aceptadas
  int        hayMutacion;	// Para saber cuando se da una mutacion
  Individuo *padre,   *madre;	// Los progenitores
- Individuo *hijo;    		// El retoño, mayormente parecido a su popo
- Individuo *hija;    		// La retoña, mayormente parecida a su momo
+ Individuo *hijo;    		// El retoÃ±o, mayormente parecido a su popo
+ Individuo *hija;    		// La retoÃ±a, mayormente parecida a su momo
  int        posPadre, posMadre;	// Posiciones ocupadas por los padres en la poblacion
  Flt        errPadre, errMadre;	// Los errores de los padres
  Flt        errHijo,  errHija;	// Errores de los fios
@@ -349,7 +349,7 @@ int Poblacion::generacionB()
   }
   else
   {
-   // Tras consumar el "ayuntamiento carnal con fembra placentera" viene el PARTO de ambos retoños
+   // Tras consumar el "ayuntamiento carnal con fembra placentera" viene el PARTO de ambos retoÃ±os
    hijo = padre->cruce(*madre);
    hija = madre->cruce(*padre);
    hayMutacion = FALSO;
@@ -382,7 +382,7 @@ int Poblacion::generacionB()
    {
     posMejor = posPadre;
     if(hayMutacion)
-     cout << "!";
+     std::cout << "!";
    }
    // Se han creado 2 nuevos individuos: ambos hijos
    numNuevos += 2;
@@ -406,7 +406,7 @@ int Poblacion::generacionB()
      {
       posMejor = posPadre;
       if(hayMutacion)
-       cout << "!";
+       std::cout << "!";
      }
     }
     else					// El padre sigue siendo el mejor (de esa familia)
@@ -423,8 +423,8 @@ int Poblacion::generacionB()
   numIteraciones++;
  }
  numGeneraciones++;
- //cout << " [Nuevos: " << numNuevos << " (" << 100.*numNuevos/numIndividuos << "%)] " << endl;
- cout << "#Mut: " << numMutadosOK << "/" << numMutados << endl;
+ // std::cout << " [Nuevos: " << numNuevos << " (" << 100.*numNuevos/numIndividuos << "%)] " << std::endl;
+ std::cout << "#Mut: " << numMutadosOK << "/" << numMutados << std::endl;
  return numNuevos;
 }
 
@@ -438,8 +438,8 @@ int Poblacion::generacionBI()
  int        numMutadosOK   = 0; // Numero de mutaciones aceptadas
  int        hayMutacion;	// Para saber cuando se da una mutacion
  Individuo *padre, *madre;	// Los progenitores
- Individuo *hijo;    		// El retoño, mayormente parecido a su popo
- Individuo *hija;    		// La retoña, mayormente parecida a su momo
+ Individuo *hijo;    		// El retoÃ±o, mayormente parecido a su popo
+ Individuo *hija;    		// La retoÃ±a, mayormente parecida a su momo
  int        posPadre, posMadre;	// Posiciones ocupadas por los padres en la poblacion
  Flt        errPadre, errMadre;	// Los errores de los padres
  Flt        errHijo,  errHija;	// Errores de los fios
@@ -487,21 +487,21 @@ int Poblacion::generacionBI()
   }
   else
   {
-   // Tras consumar el "ayuntamiento carnal con fembra placentera" viene el PARTO de ambos retoños
+   // Tras consumar el "ayuntamiento carnal con fembra placentera" viene el PARTO de ambos retoÃ±os
    hijo = padre->cruceIntron(*madre, pAPHijo, pAMHijo, pArbHijo);
    usaIntronHijo = (pArbHijo) ? VERDAD : FALSO;
    /*
    if(usaIntronHijo)
    {
-    cout << "Para el hijo, Padre:" << endl;
+    std::cout << "Para el hijo, Padre:" << std::endl;
     padre->ver();
-    cout << *pAPHijo;
-    cout << "Madre:" << endl;
+    std::cout << *pAPHijo;
+    std::cout << "Madre:" << std::endl;
     madre->ver();
-    cout << *pAMHijo;
-    cout << "Hijo:" << endl;
+    std::cout << *pAMHijo;
+    std::cout << "Hijo:" << std::endl;
     hijo->ver();
-    cout << *pArbHijo;
+    std::cout << *pArbHijo;
    }
    */
    hija = madre->cruceIntron(*padre, pAPHija, pAMHija, pArbHija);
@@ -509,15 +509,15 @@ int Poblacion::generacionBI()
    /*
    if(usaIntronHija)
    {
-    cout << "Para la hija, Padre:" << endl;
+    std::cout << "Para la hija, Padre:" << std::endl;
     madre->ver();
-    cout << *pAPHija;
-    cout << "Madre:" << endl;
+    std::cout << *pAPHija;
+    std::cout << "Madre:" << std::endl;
     padre->ver();
-    cout << *pAMHija;
-    cout << "Hija:" << endl;
+    std::cout << *pAMHija;
+    std::cout << "Hija:" << std::endl;
     hija->ver();
-    cout << *pArbHija;
+    std::cout << *pArbHija;
    }
    */
    hayMutacion = FALSO;
@@ -566,10 +566,10 @@ int Poblacion::generacionBI()
    {
     posMejor = posPadre;
     if(hayMutacion)
-     cout << "M!";
+     std::cout << "M!";
     if(usaIntronHijo)		// Sumo 5 al intron del mejor individuo
     {
-     //cout << " I! " << *pArbHijo << endl;
+     // std::cout << " I! " << *pArbHijo << std::endl;
      hijo->incIntron(pArbHijo);
      hijo->incIntron(pArbHijo);
      hijo->incIntron(pArbHijo);
@@ -613,10 +613,10 @@ int Poblacion::generacionBI()
      {
       posMejor = posPadre;
       if(hayMutacion)
-       cout << "M!";
+       std::cout << "M!";
       if(usaIntronHijo)		// Sumo 5 al intron del mejor individuo
       {
-       //cout << " I! " << *pArbHijo << endl;
+       // std::cout << " I! " << *pArbHijo << std::endl;
        hijo->incIntron(pArbHijo);
        hijo->incIntron(pArbHijo);
        hijo->incIntron(pArbHijo);
@@ -655,8 +655,8 @@ int Poblacion::generacionBI()
   numIteraciones++;
  }
  numGeneraciones++;
- //cout << " [Nuevos: " << numNuevos << " (" << 100.*numNuevos/numIndividuos << "%)] " << endl;
- cout << "#Mut: " << numMutadosOK << "/" << numMutados << endl;
+ // std::cout << " [Nuevos: " << numNuevos << " (" << 100.*numNuevos/numIndividuos << "%)] " << std::endl;
+ std::cout << "#Mut: " << numMutadosOK << "/" << numMutados << std::endl;
  return numNuevos;
 }
 
@@ -670,8 +670,8 @@ int Poblacion::generacionC()
  int        numIteraciones = 0;	// Numero de iteraciones para llevar a cabo la generacion
  int        numNuevos = 0;	// Numero de nuevos individuos creados en la generacion
  Individuo *padre,   *madre;	// Los progenitores
- Individuo *hijo;    		// El retoño, mayormente parecido a su popo
- Individuo *hija;    		// La retoña, mayormente parecida a su momo
+ Individuo *hijo;    		// El retoÃ±o, mayormente parecido a su popo
+ Individuo *hija;    		// La retoÃ±a, mayormente parecida a su momo
  int        posPadre, posMadre;	// Posiciones ocupadas por los padres en la poblacion
  int        posPadr2, posMadr2; // La competencia
  Flt        errHijo,  errHija;	// Errores de los fios
@@ -701,7 +701,7 @@ int Poblacion::generacionC()
 //  }
 //  else
 //  {
-   // Tras consumar el "ayuntamiento carnal con fembra placentera" viene el PARTO de ambos retoños
+   // Tras consumar el "ayuntamiento carnal con fembra placentera" viene el PARTO de ambos retoÃ±os
    hijo = padre->cruce(*madre);
    hija = madre->cruce(*padre);
 //  }
@@ -747,7 +747,7 @@ int Poblacion::generacionC()
   numIteraciones++;
  }
  numGeneraciones++;
- //cout << " [Nuevos: " << numNuevos << " (" << 100.*numNuevos/numIndividuos << "%)] " << endl;
+ // std::cout << " [Nuevos: " << numNuevos << " (" << 100.*numNuevos/numIndividuos << "%)] " << std::endl;
  return numNuevos;
 }
 
@@ -803,7 +803,7 @@ int Poblacion::generacionD(int nHijos)
   errHijo0 = hijo0->getError();
   errHijo1 = hijo1->getError();
   // Enfrento a los padres contra su numerosa prole, solo los 2 mejores sobreviviran
-  if(errHijo1 < errPadre)	// Si el 2º hijo es mejor que el padre, los 2 primeros hijos se salvan
+  if(errHijo1 < errPadre)	// Si el 2Ã± hijo es mejor que el padre, los 2 primeros hijos se salvan
   {				// ya que errHijo1 < errHijo2 < errPadre < errMadre
    delete padre;                // Cria cuervos y te sacaran los ojos!
    delete madre;		// Mata a los padres.
@@ -849,7 +849,7 @@ int Poblacion::generacionD(int nHijos)
  // Destruyo la simpatica union familiar
  delete cHijos;
  numGeneraciones++;
- //cout << " [Nuevos: " << numNuevos << " (" << 100.*numNuevos/numIndividuos << "%)] " << endl;
+ // std::cout << " [Nuevos: " << numNuevos << " (" << 100.*numNuevos/numIndividuos << "%)] " << std::endl;
  return numNuevos;
 }
 
@@ -863,8 +863,8 @@ int Poblacion::generacionE(int nNovias)
  int        numMutadosOK   = 0; // Numero de mutaciones aceptadas
  int        hayMutacion;	// Para saber cuando se da una mutacion
  Individuo *padre, *madre;	// Los progenitores
- Individuo *hijo;    		// El retoño, mayormente parecido a su popo
- Individuo *hija;    		// La retoña, mayormente parecida a su momo
+ Individuo *hijo;    		// El retoÃ±o, mayormente parecido a su popo
+ Individuo *hija;    		// La retoÃ±a, mayormente parecida a su momo
  int        posPadre, posMadre;	// Posiciones ocupadas por los padres en la poblacion
  Flt        errPadre, errMadre;	// Los errores de los padres
  Flt        errHijo,  errHija;	// Errores de los fios
@@ -917,7 +917,7 @@ int Poblacion::generacionE(int nNovias)
   }
   else
   {
-   // Tras consumar el "ayuntamiento carnal con fembra placentera" viene el PARTO de ambos retoños
+   // Tras consumar el "ayuntamiento carnal con fembra placentera" viene el PARTO de ambos retoÃ±os
    hijo = padre->cruce(*madre);
    hija = madre->cruce(*padre);
    hayMutacion = FALSO;
@@ -950,7 +950,7 @@ int Poblacion::generacionE(int nNovias)
    {
     posMejor = posPadre;
     if(hayMutacion)
-     cout << "!";
+     std::cout << "!";
    }
    // Se han creado 2 nuevos individuos: ambos hijos
    numNuevos += 2;
@@ -974,7 +974,7 @@ int Poblacion::generacionE(int nNovias)
      {
       posMejor = posPadre;
       if(hayMutacion)
-       cout << "!";
+       std::cout << "!";
      }
     }
     else					// El padre sigue siendo el mejor (de esa familia)
@@ -991,8 +991,8 @@ int Poblacion::generacionE(int nNovias)
   numIteraciones++;
  }
  numGeneraciones++;
- //cout << " [Nuevos: " << numNuevos << " (" << 100.*numNuevos/numIndividuos << "%)] " << endl;
- //cout << "#Mut: " << numMutadosOK << "/" << numMutados << endl;
+ // std::cout << " [Nuevos: " << numNuevos << " (" << 100.*numNuevos/numIndividuos << "%)] " << std::endl;
+ // std::cout << "#Mut: " << numMutadosOK << "/" << numMutados << std::endl;
  return numNuevos;
 }
 
@@ -1022,7 +1022,7 @@ void Poblacion::refinaPoblacion()
 
 // Algoritmo de Karl Wahall para la limpieza etnica y posterior recuperacion de la diversidad genetica.
 // Se salva un porcentaje de la poblacion actual, la elite de los mejores, y se extermina sistematicamente
-// al resto; despues se sustituye a los caidos por una nueva poblacion aleatoria ¿y enriquecida?, como se
+// al resto; despues se sustituye a los caidos por una nueva poblacion aleatoria Ã±y enriquecida?, como se
 // hace con la mano de obra tercermundista...
 void Poblacion::nemesis(int nElite)
 {
@@ -1075,42 +1075,42 @@ void Poblacion::nemesis(int nElite)
 // salida019.dat con datos de la funcion aproximada y de la aproximacion propuesta
 // El primer parametro es el nombre de la funcion externa de escritura creada por el usuario
 // El segundo (opcional) es el numero de segundos que ha durado el entrenamiento
-void Poblacion::escribeResultados(void (*ptrFuncEscritura)(ptrIndividuo, ptrConjNodos, fstream &), int t)
+void Poblacion::escribeResultados(void (*ptrFuncEscritura)(ptrIndividuo, ptrConjNodos, std::fstream &), int t)
 {
  // Al final, creo un fichero con la expresion (*.EXP) que contiene la expresion y algun otro dato mas
  // y otro con su evaluacion en el intervalo dado, con la primera columna con los valores de X,
  // la segunda con los de f(X) y la tercera con los ARB(X). Sera utilizado para crear graficas...
  char *elNombre = generaNombre("expre000.dat");	// Se le da un nombre al fichero fruto de la evolucion
- cout << "Fichero de salida:        " << elNombre         << endl;
- fstream fExp(elNombre, ios::out);		// Fichero de expresion
- fExp << "Fichero de salida:        " << elNombre         << endl;
- fExp << "Problema a resolver:      " << elProblema->getNombre() << endl;
+ std::cout << "Fichero de salida:        " << elNombre         << std::endl;
+ std::fstream fExp(elNombre, std::ios::out);		// Fichero de expresion
+ fExp << "Fichero de salida:        " << elNombre         << std::endl;
+ fExp << "Problema a resolver:      " << elProblema->getNombre() << std::endl;
 #if defined(__VMS)
- fExp << "Maquina: HORRU VMS/VAX"                         << endl;
+ fExp << "Maquina: HORRU VMS/VAX"                         << std::endl;
 #else
- fExp << "Maquina: PENTIUM 100"                           << endl;
+ fExp << "Maquina: PENTIUM 100"                           << std::endl;
 #endif
- fExp << __FILE__ << "  " << __DATE__ << "  " << __TIME__ << endl;
- fExp << "Poblacion:                " << numIndividuos    << endl;
- fExp << "Semilla GNA:              " << semilla          << endl;
- fExp << "Factor enriquecimiento:   " << factorEnriq      << endl;
- fExp << "Metodo de generacion:     " << metodoGeneracion << endl;
- fExp << "Generaciones:             " << numGeneraciones  << endl;
+ fExp << __FILE__ << "  " << __DATE__ << "  " << __TIME__ << std::endl;
+ fExp << "Poblacion:                " << numIndividuos    << std::endl;
+ fExp << "Semilla GNA:              " << semilla          << std::endl;
+ fExp << "Factor enriquecimiento:   " << factorEnriq      << std::endl;
+ fExp << "Metodo de generacion:     " << metodoGeneracion << std::endl;
+ fExp << "Generaciones:             " << numGeneraciones  << std::endl;
  if(t)
-  fExp << "Tiempo de entrenamiento:  " << t << " segundos" << endl;
- fExp << "Posicion del mejor:       " << posMejor << endl;
- fExp << "Error del mejor:          " << (*conjIndividuos)[posMejor]->getError() << endl;
- fExp << "Numero de nodos:          " << (*conjIndividuos)[posMejor]-> getNumNodos() << endl;
- fExp << "Numero de intrones:       " << (*conjIndividuos)[posMejor]-> getNumIntrones() << endl;
- fExp << "Error medio de poblacion: " << errorMedioPoblacion << endl;
- fExp << "Numero medio de nodos:    " << numMedioNodos << endl;
- fExp << "Numero medio de intrones: " << numMedioIntrones << endl;
- fExp << "Expresion del mejor:" << endl;
- fExp << *((*conjIndividuos)[posMejor]->getArbol()) << endl;
+  fExp << "Tiempo de entrenamiento:  " << t << " segundos" << std::endl;
+ fExp << "Posicion del mejor:       " << posMejor << std::endl;
+ fExp << "Error del mejor:          " << (*conjIndividuos)[posMejor]->getError() << std::endl;
+ fExp << "Numero de nodos:          " << (*conjIndividuos)[posMejor]-> getNumNodos() << std::endl;
+ fExp << "Numero de intrones:       " << (*conjIndividuos)[posMejor]-> getNumIntrones() << std::endl;
+ fExp << "Error medio de poblacion: " << errorMedioPoblacion << std::endl;
+ fExp << "Numero medio de nodos:    " << numMedioNodos << std::endl;
+ fExp << "Numero medio de intrones: " << numMedioIntrones << std::endl;
+ fExp << "Expresion del mejor:" << std::endl;
+ fExp << *((*conjIndividuos)[posMejor]->getArbol()) << std::endl;
 
  fExp.close();
 
- fstream fSal(generaNombre("salid000.dat"), ios::out);         // Fichero de datos para graficas
+ std::fstream fSal(generaNombre("salid000.dat"), std::ios::out);         // Fichero de datos para graficas
  // Se llama a la funcion externa dada por el usuario
  ptrFuncEscritura(getMejorIndividuo(), conjVariables, fSal);
  fSal.close();

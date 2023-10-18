@@ -1,5 +1,5 @@
 /*
-  Bupa.h
+  \file Bupa.h
 
   Problema 9
   Tenemos 345 ejemplos de 6 atributos (5 de analisis de sangre y 1 de consumo
@@ -9,12 +9,10 @@
 #ifndef BUPA_H
 #define BUPA_H
 
-
-#include "Bateria.h"
-#include "Piposeco.h"
 #include "Problema.h"
-#include "Utiles.h"
-#include "Variable.h"
+#include "../Bateria.h"
+#include "../Variable.h"
+#include "../Piposeco.h"
 
 class Bupa : public Problema
 {
@@ -35,11 +33,6 @@ class Bupa : public Problema
 	   numEjemplos = numAtributos = 0;
 	   pilaEvaluacion = 0;
 	}
-
-	char *getNombre()
-	{ 
-		return nombre; 
-	}
   
 	Flt fitness(ptrIndividuo pInd, ptrConjNodos pConjVariables);
 
@@ -48,16 +41,13 @@ class Bupa : public Problema
 		return 0.0; 
 	}
 
-	Flt testeaProblema(ptrIndividuo pInd, ptrConjNodos pConjVariables, char *nomFichTest)
+	Flt testeaProblema(ptrIndividuo pInd, ptrConjNodos pConjVariables, const char *nomFichTest)
 	{ 
 		return 0.0; 
 	}
 
 
  private:
-
-	 // Nombre del problema a resolver
-	char *nombre;		
 
 	// Bateria de ejemplos a clasificar
 	Bateria *batBupa;

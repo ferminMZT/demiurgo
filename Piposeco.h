@@ -28,7 +28,7 @@ class Piposeco
 		// crecientemente desde 0 (con el nodo raiz) hasta numEntradas (con el ultimo)
 		pArb->apilarPreOrden(entradas, numEntradas);
 		// verSimplificado();
-		// cout << endl;
+		// std::cout << std::endl;
 		// Y tras tan bonita construccion, que cosa mejor que simplificarla!!!
 		simplifica();
 	}

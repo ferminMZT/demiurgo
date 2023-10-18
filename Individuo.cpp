@@ -6,6 +6,7 @@
 
 #include "Individuo.h"
 #include "Constante.h"
+#include <cstdint>
 
 
 // Constructor individual a partir de las operaciones y variables que forman sus nodos
@@ -29,14 +30,15 @@ Individuo::Individuo(Conjunto<ptrNodo> &cVar, Conjunto<ptrNodo> &cOpe)
 // Para mostrar todas las tripas de las que se compone un individuo (direcciones incluidas)
 void Individuo::ver()
 {
- cout << "T{" << int(this) << "}" << endl;
- cout << "N:" << numNodos << " I:" << numIntrones << " E:" << errorGap << endl;
- cout << "A: [" << (int)arbolGap << "]: " << *arbolGap << endl;
-// cout << "C: [" << (int)tabCtes << "] -> ";
-// for(int n = 0; n < TAM_TABLA_GA; n++)
-//  cout << "(" << n << ":" << (int)&((*tabCtes)[n]) << ")=" << (*tabCtes)[n] << " ";
-// cout << endl;
-// arbolGap->verIntrones();	// Para romper el arbol en sus intrones utiles
+    // Quiero ver el propio puntero...
+    std::cout << "T{" << std::uintptr_t(this) << "}" << std::endl;
+    std::cout << "N:" << numNodos << " I:" << numIntrones << " E:" << errorGap << std::endl;
+    std::cout << "A: [" << std::uintptr_t(arbolGap) << "]: " << *arbolGap << std::endl;
+    // std::cout << "C: [" << std::uintptr_t(tabCtes) << "] -> ";
+    // for(int n = 0; n < TAM_TABLA_GA; n++)
+    //  std::cout << "(" << n << ":" << (int)&((*tabCtes)[n]) << ")=" << (*tabCtes)[n] << " ";
+    // std::cout << std::endl;
+    // arbolGap->verIntrones();	// Para romper el arbol en sus intrones utiles
 }
 
 // La funcion fundamental es la de CRUCE, el que llama es el padre con la madre como parametro.
@@ -147,7 +149,7 @@ Individuo *Individuo::cruceIntron(Individuo &iMadre, ptrArbol & pArbPad, ptrArbo
 // Otra funcion primordial es la MUTACION, que aunque menos importante que el cruce, sirve como expansor
 // de la diversidad genetica de los individuos, sirviendo como posible alternativa al estrangulamiento o
 // estancamiento de las poblaciones. A partir del individuo que hace la llamada se crea otro casi igual,
-// pero con una pequeña mutacion aleatoria introducida ya sea en la parte vectorial o en la arborea.
+// pero con una pequeÃ±a mutacion aleatoria introducida ya sea en la parte vectorial o en la arborea.
 // Como parametros se requieren el conjunto de variables y el de operaciones
 Individuo *Individuo::mutacion(Conjunto<ptrNodo> &cVar, Conjunto<ptrNodo> &cOpe)
 {
@@ -261,7 +263,7 @@ Individuo *Individuo::mutacion(Conjunto<ptrNodo> &cVar, Conjunto<ptrNodo> &cOpe)
 void Individuo::mutArbIntercambio()
 {
  Arbol *a, *b;			// Las ramas que se van a intercambiar entre si
- // Si el arbol es demasiado pequeño, es inutil intentarlo
+ // Si el arbol es demasiado pequeÃ±o, es inutil intentarlo
  if(numNodos < 15)
   return;
  while(1)			// Hasta que no consiga 2 ramas independientes no paro:
@@ -378,7 +380,7 @@ void Individuo::mutArbNodoHeterogenea(Conjunto<ptrNodo> &cVar)
 
 // Mutacion de la parte ARBOREA de un individuo por contraccion/expansion a partir de una posicion
 // aleatoriamente seleccionada:
-// -EXPANSION: Si hay un terminal (var o cte) se le suprime y se cuelga en su lugar un pequeño subarbol.
+// -EXPANSION: Si hay un terminal (var o cte) se le suprime y se cuelga en su lugar un pequeÃ±o subarbol.
 // -CONTRACCION: Si hay un NO terminal, se destruye ese subarbol y se cambia por un terminal (var o cte).
 void Individuo::mutArbContractiva(Conjunto<ptrNodo> &cVar, Conjunto<ptrNodo> &cOpe)
 {

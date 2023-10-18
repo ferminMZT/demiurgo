@@ -134,7 +134,7 @@ class Individuo
    Piposeco pilaSimplificacionEvaluacion(arbolGap, numNodos);
    // Y se ve esa pila simplificada
    pilaSimplificacionEvaluacion.verSimplificado();
-   cout << endl;
+   std::cout << std::endl;
   }
 
   // La funcion fundamental es la de CRUCE, el que llama es el padre con la madre como parametro.
@@ -143,7 +143,7 @@ class Individuo
 
   // Si en el cruce se emplean intrones, es necesario tener identificados los subarboles paterno, materno y del hijo
   // para poder re-asignar sus intrones... La direccion es necesaria para poder reasignar los punteros parametro
-  Individuo *cruceIntron(Individuo &iMadre, ptrArbol & pArbPad, ptrArbol & pArbMad, ptrArbol & pArbHij);
+  Individuo *cruceIntron(Individuo &iMadre, ptrArbol &pArbPad, ptrArbol &pArbMad, ptrArbol &pArbHij);
 
   // Para manejar los intrones en ciertas posiciones del arbol del individuo
   void incIntron(ptrArbol pArb)
@@ -160,7 +160,7 @@ class Individuo
    }
   }
   // Otra funcion muy importante es la mutacion, que a partir del individuo que hace la llamada crea
-  // otro casi igual, pero con una pequeña mutacion aleatoria introducida. Podria mutarse el intron???
+  // otro casi igual, pero con una pequeï¿½a mutacion aleatoria introducida. Podria mutarse el intron???
   Individuo *mutacion(Conjunto<ptrNodo> &cVar, Conjunto<ptrNodo> &cOpe);
 
   // Mi modesta aportacion: el refinado de individuos, comprobando sus

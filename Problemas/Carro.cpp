@@ -39,7 +39,7 @@ Flt Carro::fitness(ptrIndividuo pInd, ptrConjNodos pConjVariables)
  Recordar que esto es una regresion simbolica!!!
 */
 
-Flt Carro::testeaProblema(ptrIndividuo pInd, ptrConjNodos pConjVariables, char *nomFichTest)
+Flt Carro::testeaProblema(ptrIndividuo pInd, ptrConjNodos pConjVariables, const char *nomFichTest)
 {
  // Se construye la pila piposeco a partir del individuo dado, sobre la cual se evaluara todo
  pilaEvaluacion = new Piposeco(pInd->getArbol(), pInd->getNumNodos());

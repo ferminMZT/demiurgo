@@ -1,7 +1,7 @@
 /** 
   Operacion.h
   Clase Operacion padre de todas las operaciones
-  Clase de los nodos que contienen una operacion: Hay un pequeño problema...
+  Clase de los nodos que contienen una operacion: Hay un pequeÃ±o problema...
   Quiero evitar tener que andar usando case o if para averiguar el tipo de
   operacion al que me enfrento en cada evaluacion de nodo de tipo operacion;
   esto lo soluciono creando una clase hija para cada operacion...
@@ -14,7 +14,7 @@
 #define OPERACION_H
 
 
-#include "Nodo.h"
+#include "../Nodo.h"
 
 
 /// Clase abstracta, madre de las distintas operaciones
@@ -40,7 +40,7 @@ class Operacion : public Nodo
 
 	virtual Flt evalua(Flt *a=0, Flt *b=0, Flt *c=0) = 0;
 	
-	virtual ostream & operator << (ostream &salida) = 0;
+	virtual std::ostream & operator << (std::ostream &salida) = 0;
 
 	/// Para saber que un nodo contiene una operacion
 	int esOperacion() const

@@ -28,7 +28,7 @@ class OperacionDivision : public Operacion
 		return *a / *b;
 	}
 
-	ostream & operator << (ostream &salida)
+	std::ostream & operator << (std::ostream &salida)
 	{ 
 		return salida << "/"; 
 	}

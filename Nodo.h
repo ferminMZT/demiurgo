@@ -33,7 +33,7 @@ class Nodo
 	virtual Flt evalua(Flt *a=0, Flt *b=0, Flt *c=0) = 0;
 
 	// Devuelve un stream con la representacion del nodo en curso
-	virtual ostream & operator << (ostream &salida) = 0;
+	virtual std::ostream & operator << (std::ostream &salida) = 0;
   
 	// Para saber el tipo de un nodo
 	virtual TipoNodo getTipoNodo() = 0;

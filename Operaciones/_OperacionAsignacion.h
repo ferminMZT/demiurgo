@@ -29,7 +29,7 @@ class OperacionAsignacion : public Operacion
 		return *a;
 	}
 
-	ostream & operator << (ostream &salida)
+	std::ostream & operator << (std::ostream &salida)
 	{ 
 		return salida << "="; 
 	}

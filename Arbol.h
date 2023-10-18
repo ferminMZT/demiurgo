@@ -236,7 +236,7 @@ class Arbol
 };
 
 // Operador << redefinido para un cout de arboles en IN-ORDEN: a+b
-ostream & operator << (ostream& os, Arbol &a);
+std::ostream & operator << (std::ostream &os, Arbol &a);
 
 typedef Arbol              *ptrArbol;
 typedef Conjunto<ptrArbol> *ptrConjArboles;

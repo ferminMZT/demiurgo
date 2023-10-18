@@ -273,13 +273,13 @@ Arbol *Arbol::getPosicionCruceIntrones(/*Intron nInt,*/ Intron nIntAleatorio)
 
  while(nCruceInt > posCruceInt->nIntron)	// Mientras que no este sobre el pto buscado
  {
-  //cout << nCruceInt << ":" << posCruceInt->nIntron << endl;
-  //cout << *posCruceInt << endl;
+  // std::cout << nCruceInt << ":" << posCruceInt->nIntron << std::endl;
+  // std::cout << *posCruceInt << std::endl;
   nCruceInt -= posCruceInt->nIntron;	// Resto el numero de intrones del nodo raiz, ya que este no es el buscado
   if(posCruceInt->i)			// Si hay subarbol izquierdo, veamos si esta en el
   {
    nParcInt = posCruceInt->i->getNumIntrones();	// Nodos del subarbol izquierdo
-   //cout << "I:" << nParcInt << endl;
+   // std::cout << "I:" << nParcInt << std::endl;
    // Si el numero de intrones en este subarbol izquierdo es MAYOR que el numero de intrones que todavia nos quedan de
    // la posicion de corte, entonces es evidente que el punto de corte esta en este subarbol izquierdo!!!
    if(nParcInt >= nCruceInt)		// Debe estar en el subarbol izquierdo
@@ -292,7 +292,7 @@ Arbol *Arbol::getPosicionCruceIntrones(/*Intron nInt,*/ Intron nIntAleatorio)
   if(posCruceInt->c)
   {
    nParcInt = posCruceInt->c->getNumIntrones();
-   //cout << "I:" << nParcInt << endl;
+   // std::cout << "I:" << nParcInt << std::endl;
    if(nParcInt >= nCruceInt)
    {
     posCruceInt = posCruceInt->c;
@@ -303,7 +303,7 @@ Arbol *Arbol::getPosicionCruceIntrones(/*Intron nInt,*/ Intron nIntAleatorio)
   if(posCruceInt->d)
   {
    nParcInt = posCruceInt->d->getNumIntrones();
-   //cout << "I:" << nParcInt << endl;
+   // std::cout << "I:" << nParcInt << std::endl;
    if(nParcInt >= nCruceInt)
    {
     posCruceInt = posCruceInt->d;
@@ -312,7 +312,7 @@ Arbol *Arbol::getPosicionCruceIntrones(/*Intron nInt,*/ Intron nIntAleatorio)
    nCruceInt -= nParcInt;
   }
  }
- //cout << " >> "<< *posCruceInt << endl;
+ // std::cout << " >> "<< *posCruceInt << std::endl;
  return posCruceInt;
 }
 
@@ -421,15 +421,15 @@ int Arbol::apilarPreOrden(EntradaPila *vPila, int numeroEntradas)
 				vPila[indiceTemp].aridad = 1;	// Aridad 1
 			}
 			else
-				if(n->esBinario())		// Las binarias tienen el 1º parametro a continuacion
-				{				// y el 2º como raiz de su subarbol derecho
+				if(n->esBinario())		// Las binarias tienen el 1Ã± parametro a continuacion
+				{				// y el 2Ã± como raiz de su subarbol derecho
 					i->apilarPreOrden(vPila, numeroEntradas);
 					vPila[indiceTemp].param2 = d->apilarPreOrden(vPila, numeroEntradas);
 					vPila[indiceTemp].param3 = 0;
 					vPila[indiceTemp].aridad = 2;	// Aridad 2
 				}
-				else			// Las ternarias tienen el 1º a continuacion, el 2º como
-				{				// raiz de su subarbol central y el 3º en el derecho
+				else			// Las ternarias tienen el 1Ã± a continuacion, el 2Ã± como
+				{				// raiz de su subarbol central y el 3Ã± en el derecho
 					i->apilarPreOrden(vPila, numeroEntradas);
 					vPila[indiceTemp].param2 = c->apilarPreOrden(vPila, numeroEntradas);
 					vPila[indiceTemp].param3 = d->apilarPreOrden(vPila, numeroEntradas);
@@ -471,7 +471,7 @@ int Arbol::apilarPreOrden(EntradaPila *vPila, int numeroEntradas)
 void Arbol::verIntrones()
 {
  if(nIntron > 1)
-  cout << "I=" << nIntron << " -> " << *this << endl;
+  std::cout << "I=" << nIntron << " -> " << *this << std::endl;
  if(i)
   i->verIntrones();
  if(c)
@@ -482,7 +482,7 @@ void Arbol::verIntrones()
 
 // Redefino el operador << para un cout en IN-ORDEN: a+b
 // Es tonto pasarlo a polaca... y esto es otra muestra de mi talento (asexual)
-ostream & operator << (ostream& os, Arbol &a)
+std::ostream & operator << (std::ostream &os, Arbol &a)
 {
  if(a.getNodo()->esTerminal())	// Si el nodo es terminal, solo hay que imprimirlo
   a.getNodo()->operator<<(os);

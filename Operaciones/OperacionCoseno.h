@@ -9,7 +9,7 @@
 
 
 #include "Operacion.h"
-
+#include <math.h>
 
 class OperacionCoseno : public Operacion
 {
@@ -36,7 +36,7 @@ class OperacionCoseno : public Operacion
 		return (Flt) cos(*a); 
 	}
   
-	ostream & operator << (ostream &salida)
+	std::ostream & operator << (std::ostream &salida)
 	{ 
 		return salida << "cos"; 
 	}

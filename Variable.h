@@ -93,7 +93,7 @@ class Variable : public Nodo
 		val = nuevoValor; 
 	}
   
-	ostream & operator << (ostream &salida)
+	std::ostream & operator << (std::ostream &salida)
 	{ 
 		return salida << nom; 
 	}

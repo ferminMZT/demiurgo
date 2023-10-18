@@ -198,7 +198,7 @@ class Poblacion
   // Metodo para intentar recuperar la diversidad genetica de la poblacion: Algoritmo de Karl Wahall
   void nemesis(int tpcElite);
   // Tras acabar un entrenamiento, escribe los 2 ficheros de salida
-  void escribeResultados(void (*ptrFuncEscritura)(ptrIndividuo, ptrConjNodos, fstream &), int t = 0);
+  void escribeResultados(void (*ptrFuncEscritura)(ptrIndividuo, ptrConjNodos, std::fstream &), int t = 0);
 
 
  private:
@@ -211,9 +211,9 @@ class Poblacion
   int numOperaciones;
   // La poblacion es un conjunto de (ptr a) individuos de cardinal numIndividuos:
   Conjunto<ptrIndividuo> *conjIndividuos;
-  int numIndividuos;            // Tamaño de la poblacion
+  int numIndividuos;            // Tamaï¿½o de la poblacion
   int factorEnriq;		// Factor de enriquecimiento de la poblacion inicial
-  int eliteEnriq;		// Tamaño de la elite enriquecida de la poblacion inicial
+  int eliteEnriq;		// Tamaï¿½o de la elite enriquecida de la poblacion inicial
   int numGeneraciones;		// Numero de generaciones vividas por la poblacion
   int posMejor;			// Posicion en la poblacion del mejor miembro
   Flt errorMedioPoblacion;      // Error medio total de la poblacion, o sea de la generacion

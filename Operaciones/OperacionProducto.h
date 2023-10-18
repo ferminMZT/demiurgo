@@ -22,7 +22,7 @@ class OperacionProducto : public Operacion
 	Flt evalua(Flt *a, Flt *b, Flt *c)
 	{ return *a * *b; }
 
-	ostream & operator << (ostream &salida)
+	std::ostream & operator << (std::ostream &salida)
 	{ return salida << "*"; }
 
 };

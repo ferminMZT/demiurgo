@@ -1,7 +1,7 @@
 /**
-  SDI000.cpp
-  Implementacion de la clase SDI000, para la resolucion del problema de las
-  SDI000es entrelazadas
+	\file SDI000.cpp
+	Implementacion de la clase SDI000, para la resolucion del problema de las
+	SDI000es entrelazadas
 */
 
 #include <math.h>
@@ -10,22 +10,20 @@
 
 #include "SDI000.h"
 
-using namespace std;
-
 SDI000::SDI000()
 {
 	nombre = "Ajuste joystick-carro(Y)";
 	numPtos = 0;
 
-	string fichero = "datos006.log";
+	std::string fichero = "datos006.log";
 
 	// Ojo, que sin el ios::nocreate crearia el fichero aunque no existiera.
-	ifstream f(fichero.c_str(), ios::in || ios::nocreate);
+	std::ifstream f(fichero.c_str(), std::ios::in);
 
 	// Tambien podria usar las fmc fail(), good(), isopen().
 	if(!f)
 	{
-		cout << "Error al abrir el fichero " << fichero << endl;
+		std::cout << "Error al abrir el fichero " << fichero << std::endl;
 		return;
 	}
 
@@ -46,7 +44,7 @@ SDI000::SDI000()
 
 	if(f.eof())
 	{
-		cout << "Error en el interior del fichero " << fichero << endl;
+		std::cout << "Error en el interior del fichero " << fichero << std::endl;
 		return;
 	}
 	// Y esa linea que NO empieza por # debo escupirla para poderla leer...
@@ -55,14 +53,14 @@ SDI000::SDI000()
 	f.seekg(posIniVar);
 
 	// Vamos a contar el numero de columnas usando la linea almacenada en el buffer
-	string linea = buffer;
+	std::string linea = buffer;
 	int numColumnas = 0;
 	const char cifras[] = "0123456789.+-eE";
 
 
 	while(1)
 	{
-		// cout << "<" << linea << ">" <<endl;
+		// std::cout << "<" << linea << ">" <<endl;
 		int iniCol = linea.find_first_of(cifras);
 		int finCol = linea.find_first_not_of(cifras);
 		if(iniCol == 0 && finCol == -1)
@@ -83,8 +81,6 @@ SDI000::SDI000()
 		}
 	}
 
-
-
 	// Calculo del numero de filas
 	int numFilas = 0;
 
@@ -96,8 +92,8 @@ SDI000::SDI000()
 		numFilas++;
 	}
 	
-	cout << "Columnas: " << numColumnas << endl;
-	cout << "Filas:    " << numFilas << endl;
+	std::cout << "Columnas: " << numColumnas << std::endl;
+	std::cout << "Filas:    " << numFilas << std::endl;
 
 	// Vuelta al inicio de las variables para cargar los valores
 	// Con clear reseteo el bit de EOF
@@ -116,21 +112,21 @@ SDI000::SDI000()
 		for(col = 0; col < numColumnas; col++)
 		{
 			f >> valor;
-			// cout << valor;
+			// std::cout << valor;
 			if(col == columnaX)
 			{
 				x.push_back(valor);
-				// cout << "X";
+				// std::cout << "X";
 			}
 			if(col == columnaY)
 			{
 				y.push_back(valor);
-				// cout << "Y";
+				// std::cout << "Y";
 			}
 
-			// cout << " ";
+			// std::cout << " ";
 		}
-		// cout << fil << endl;
+		// std::cout << fil << std::endl;
 	}
 
 	numPtos = numFilas;
@@ -138,7 +134,7 @@ SDI000::SDI000()
 	// Experimentos varios:
 	// 1) La Y que es absoluta la vamos a dejar como incremental:
 
-	for(fil; fil != 0; fil--)
+	for(; fil != 0; fil--)
 	{
 		y[fil] = y[fil - 1] - y[fil];
 		x[fil] = x[fil - 1] - x[fil];
@@ -213,9 +209,9 @@ Flt fG(Flt X)
 * (X * (-(X)))))));
 }
 
-Flt SDI000::testeaProblema(ptrIndividuo pInd, ptrConjNodos pConjVariables, char *nomFichTest)
+Flt SDI000::testeaProblema(ptrIndividuo pInd, ptrConjNodos pConjVariables, const char *nomFichTest)
 {
-	ofstream fSal(nomFichTest);
+	std::ofstream fSal(nomFichTest);
 	Flt error = 0;
 	
 	for(int n = 1; n < numPtos; n++)
@@ -225,7 +221,7 @@ Flt SDI000::testeaProblema(ptrIndividuo pInd, ptrConjNodos pConjVariables, char 
 		Flt valY = y[n];
 		y[n] += y[n-1];
 
-		fSal << x[n] << " " << y[n] << " " << fG(valX) << " " << (valY - fG(valX)) << endl;
+		fSal << x[n] << " " << y[n] << " " << fG(valX) << " " << (valY - fG(valX)) << std::endl;
 		error += (valY - fG(valX));
 	}
 

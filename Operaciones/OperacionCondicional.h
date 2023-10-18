@@ -40,7 +40,7 @@ class OperacionCondicional : public Operacion
 		return *sino;
 	}
 
-	ostream & operator << (ostream &salida)
+	std::ostream & operator << (std::ostream &salida)
 	{ 
 		return salida << "?"; 
 	}

@@ -190,11 +190,14 @@ void Piposeco::simplifica()
 				// El operador ...; var = ... es algo complicado
 				case ASIGNACIONCOMA:
 					{
-						// cout << "Simplificando..." << endl;;
+						// std::cout << "Simplificando..." << std::endl;;
 
 					}
 					break;
 
+				// Esto es para quitar el warning de los casos no tratados.
+				default:
+					break;
 
 			} // switch(entradas[n].tipoNodo)
 		} // if(entradas[n].aridad)
@@ -244,6 +247,10 @@ Flt Piposeco::evalua()
 					case DIVISION:
 						*(entradas[n].valorNodo) = (Flt) ((esCero(*param2)) ? .0 : *param1 / *param2);
 						goto SIG;
+
+					// Esto es para quitar el warning de los casos no tratados.
+					default:
+						break;
 				}
 			}
 
@@ -267,6 +274,10 @@ Flt Piposeco::evalua()
 					 case CUADRADO:
 						 *(entradas[n].valorNodo) = *(param1) * *(param1);
 						 goto SIG;
+					
+					// Esto es para quitar el warning de los casos no tratados.
+					default:
+						break;
 				}
 			}
 
@@ -294,6 +305,9 @@ Flt Piposeco::evalua()
 //					*(entradas[n].valorNodo) = *param1;
 //					goto SIG;
 
+				// Esto es para quitar el warning de los casos no tratados.
+				default:
+					break;
 			}
 			
 		}
@@ -303,8 +317,8 @@ SIG: ;
 	return *(entradas[0].valorNodo);
 }
 
-// Tan solo sirve para visualizar en pantalla la expresión simplificada de la pila.
-// Imprime la expresión en in-orden, por lo cual funciona recursivamente...
+// Tan solo sirve para visualizar en pantalla la expresiÃ±n simplificada de la pila.
+// Imprime la expresiÃ±n en in-orden, por lo cual funciona recursivamente...
 void Piposeco::verSimplificado(int nPipo)
 {
 	// Voy a imprimir la pila en inorden!!!, comenzando por el primer operando; para ello
@@ -314,12 +328,12 @@ void Piposeco::verSimplificado(int nPipo)
 	if(entradas[nPipo].aridad == 0)
 	{
 		if(entradas[nPipo].tipoNodo == CONSTANTE)
-			cout << *(entradas[nPipo].valorNodo);
+			std::cout << *(entradas[nPipo].valorNodo);
 		else
 			// Se supone que solo puede ser una variable, pero surge un problema,
-			// ¿como acceder a su nombre? -> Al crear la pila en apilar meto el nombre
+			// Ã±como acceder a su nombre? -> Al crear la pila en apilar meto el nombre
 			// char -> int en su dmc parametro2
-			cout << (char)entradas[nPipo].param2;
+			std::cout << (char)entradas[nPipo].param2;
 	}
 	else
 		// Caso recursivo, nos enfrentamos a una operacion
@@ -333,27 +347,31 @@ void Piposeco::verSimplificado(int nPipo)
 				
 				// Vemos el primer operando (a continuacion)
 				if(noHayTerminal)
-					cout << "(";
+					std::cout << "(";
 
 				verSimplificado(nPipo + 1);
 
 				if(noHayTerminal)
-					cout << ") ";
+					std::cout << ") ";
 
 				// Vemos la operacion
 				switch(entradas[nPipo].tipoNodo)
 				{
 					case SUMA:
-						cout << "+";
+						std::cout << "+";
 						break;
 					case RESTA:
-						cout << "-";
+						std::cout << "-";
 						break;
 					case PRODUCTO:
-						cout << "*";
+						std::cout << "*";
 						break;
 					case DIVISION:
-						cout << "/";
+						std::cout << "/";
+						break;
+
+					// Esto es para quitar el warning de los casos no tratados.
+					default:
 						break;
 				}
 
@@ -361,12 +379,12 @@ void Piposeco::verSimplificado(int nPipo)
 				noHayTerminal = (entradas[entradas[nPipo].param2].aridad != 0);
 				
 				if(noHayTerminal)
-					cout << " (";
+					std::cout << " (";
 				
 				verSimplificado(entradas[nPipo].param2);
 				
 				if(noHayTerminal)
-					cout << ") ";
+					std::cout << ") ";
 			}
 			else
 				// Las operaciones unarias
@@ -376,28 +394,32 @@ void Piposeco::verSimplificado(int nPipo)
 					switch(entradas[nPipo].tipoNodo)
 					{
 						case NEGATIVO:
-							cout << " -";
+							std::cout << " -";
 							break;
 						case SENO:
-							cout << " sin";
+							std::cout << " sin";
 							break;
 						case COSENO:
-							cout << " cos";
+							std::cout << " cos";
 							break;
 						case CUADRADO:
-							cout << " pow";
+							std::cout << " pow";
+							break;
+
+						// Esto es para quitar el warning de los casos no tratados.
+						default:
 							break;
 					}
 
 					// Y luego el operando
-					cout << "(";
+					std::cout << "(";
 
 					verSimplificado(nPipo + 1);
 
 					if(entradas[nPipo].tipoNodo == CUADRADO)
-						cout << ", 2.";
+						std::cout << ", 2.";
 					
-					cout << ")";
+					std::cout << ")";
 				}
 				// El IFGZTE, operador ternario (op1) ? (op2) : (op3)
 				// // O el operador ;=             (op1) ; (op2) = (op3)
@@ -406,32 +428,32 @@ void Piposeco::verSimplificado(int nPipo)
 				{
 					if(entradas[nPipo].tipoNodo == CONDICIONAL)
 					{
-						cout << "(";
+						std::cout << "(";
 						verSimplificado(nPipo + 1);
-						cout << " > 0) ? (";
+						std::cout << " > 0) ? (";
 						verSimplificado(entradas[nPipo].param2);
-						cout << ") : (";
+						std::cout << ") : (";
 						verSimplificado(entradas[nPipo].param3);
-						cout << ")";
+						std::cout << ")";
 					}
 					else
 						if(entradas[nPipo].tipoNodo == ASIGNACIONCOMA)
 						{
 //						// Aqui va el ;=
 //						verSimplificado(nPipo + 1);
-//						cout << ";\n";
+//						std::cout << ";\n";
 //						verSimplificado(entradas[nPipo].param2);
-//						cout << " = ";
+//						std::cout << " = ";
 //						verSimplificado(entradas[nPipo].param3);
 
 							// Aqui va el =,
-							cout << "(";
+							std::cout << "(";
 							verSimplificado(nPipo + 1);
-							cout << " = (";
+							std::cout << " = (";
 							verSimplificado(entradas[nPipo].param2);
-							cout << ")), (";
+							std::cout << ")), (";
 							verSimplificado(entradas[nPipo].param3);
-							cout << ")";
+							std::cout << ")";
 						}
 				}
 		}

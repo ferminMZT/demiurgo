@@ -1,8 +1,8 @@
 /*
-  Problema.h
+  	\file Problema.h
 
-  Problema es la clase base abstracta de la que derivare virtualmente todos los
-  subproblemas concretos a los que me enfrentare...
+  	Problema es la clase base abstracta (aka ABC) de la que derivare virtualmente todos los subproblemas concretos
+	a los que me enfrentare...
 */
 
 #ifndef PROBLEMA_H
@@ -26,21 +26,22 @@ class Problema
 	 virtual Flt distancia(ptrIndividuo pInd1, ptrIndividuo pInd2, ptrConjNodos pConjVariables) = 0;
 	 
 	 // Para obtener el nombre del problema tratado
-	 virtual char *getNombre()
+	 virtual const char *getNombre()
 	 {
 		 return nombre;
 	 }
 	 
 	 // Comprueba un individuo solucion sometiendolo a una bateria de pruebas en el fichero dado.
 	 // Produce un fichero .sal con los resultados de la comparacion y devuelve el % de error.
-	 virtual Flt testeaProblema(ptrIndividuo pInd, ptrConjNodos pConjVariables, char *nomFichTest) = 0;
+	 virtual Flt testeaProblema(ptrIndividuo pInd, ptrConjNodos pConjVariables, const char *nomFichTest) = 0;
 
- private:
+ protected:
   
-	char *nombre;	// Nombre del problema a resolver
+	// Nombre del problema a resolver
+	const char *nombre;
 
 };
 
-typedef Problema * ptrProblema;
+typedef Problema *ptrProblema;
 
 #endif // PROBLEMA_H

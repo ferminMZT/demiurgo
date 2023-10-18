@@ -1,6 +1,6 @@
 /* 
-  Abalones.h
-  Problema 10
+  \file Abalones.h
+  Problema 10.
   Tenemos 4177 ejemplos de 8 atributos sobre abalones para sacar como clasificacion
   la edad (de 1 a 29). Prefiero tratarlo como una regresion simbolica que produzca
   la edad y medir el error...
@@ -10,6 +10,9 @@
 #define ABALONES_H
 
 #include "Problema.h"
+#include "../Bateria.h"
+#include "../Variable.h"
+#include "../Piposeco.h"
 
 class Abalones : public Problema
 {
@@ -19,7 +22,7 @@ class Abalones : public Problema
 	 Abalones()
 	 {
 		 nombre       = "Abalones: La edad de las orejas de mar";
-		 batAbalones  = new bateria("abalones.dat");
+		 batAbalones  = new Bateria("abalones.dat");
 		 numEjemplos  = batAbalones->getNumEjemplos();
 		 numAtributos = batAbalones->getNumAtributos();
 	 }
@@ -31,25 +34,25 @@ class Abalones : public Problema
 		 pilaEvaluacion = 0;
 	 }
 
-	 flt fitness(ptrIndividuo pInd, ptrConjNodos pConjVariables);
+	 Flt fitness(ptrIndividuo pInd, ptrConjNodos pConjVariables);
 
-	 flt distancia(ptrIndividuo pInd1, ptrIndividuo pInd2, ptrConjNodos pConjVariables)
+	 Flt distancia(ptrIndividuo pInd1, ptrIndividuo pInd2, ptrConjNodos pConjVariables)
 	 { return 0.0; }
 
-	 flt testeaProblema(ptrIndividuo pInd, ptrConjNodos pConjVariables, char *nomFichTest)
+	 Flt testeaProblema(ptrIndividuo pInd, ptrConjNodos pConjVariables, const char *nomFichTest)
 	 { return 0.0; }
 	 
 
  private:
 
-	 bateria  *batAbalones;	// Bateria de ejemplos a clasificar
+	 Bateria  *batAbalones;	// Bateria de ejemplos a clasificar
 	 int       numEjemplos;      	// Numero de ejemplos de la bateria
 	 int       numAtributos;	// Numero de atributos de cada ejemplo
-	 variable *var;
-	 flt       errTodasMuestras;
+	 Variable *var;
+	 Flt       errTodasMuestras;
 	 int       ne, na;
-	 flt       valEvaluado, valClase;
-	 piposeco *pilaEvaluacion;	// Pila piposeco para la evaluacion
+	 Flt       valEvaluado, valClase;
+	 Piposeco *pilaEvaluacion;	// Pila piposeco para la evaluacion
 
 
 };

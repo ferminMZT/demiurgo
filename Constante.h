@@ -79,9 +79,9 @@ class Constante : public Nodo
 		indCte = nuevoInd; 
 	}
   
-	ostream & operator << (ostream &salida)
+	std::ostream & operator << (std::ostream &salida)
 	{ 
-		return salida << setprecision(4) << *ptrCte; 
+		return salida << std::setprecision(4) << *ptrCte; 
 	}
 
 

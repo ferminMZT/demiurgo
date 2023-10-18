@@ -36,7 +36,7 @@ class OperacionCuadrado : public Operacion
 		return *a * *a; 
 	}
   
-	ostream & operator << (ostream &salida)
+	std::ostream & operator << (std::ostream &salida)
 	{ 
 		return salida << "pow"; 
 	}
