@@ -3,6 +3,16 @@
 
   	Problema es la clase base abstracta (aka ABC) de la que derivare virtualmente todos los subproblemas concretos
 	a los que me enfrentare...
+	Algunos problemas son directamente calculables por codigo, mientras que otros requieren cargar ciertas baterias de
+	datos que contienen casos con atributos. Esas baterias estan sacadas y adaptadas de:
+
+	Los problemas de clasificación han sido extraidos del UCI Machine Learning Repository:
+	http://www.ics.uci.edu/AI/ML/MLDBRepository.html
+	en donde se pueden encontrar bases de datos, ficheros de texto, teorías de dominio y generadores de datos que son
+	ampliamente utilizados por la comunidad científica para analizar empíricamente diversos algoritmos de aprendizaje.
+	Esa página está mantenida por C.J. Merz
+	http://www.ics.uci.edu/~cmerz/)
+	del Departamento de Información y Ciencias de la Computación de la Universidad de California.
 */
 
 #ifndef PROBLEMA_H
