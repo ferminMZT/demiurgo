@@ -1,0 +1,52 @@
+{
+    // Use IntelliSense to learn about possible attributes.
+    // Hover to view descriptions of existing attributes.
+    // For more information, visit: https://go.microsoft.com/fwlink/?linkid=830387
+    "version": "0.2.0",
+    "configurations": [
+        {
+			"name": "Launch C++ debug",
+            "type": "lldb",
+            "request": "launch",
+            
+            "program": "${workspaceFolder}/demiurgo.out",
+            "args": [],
+            "cwd": "${workspaceFolder}"
+        },
+        {
+            "name": "Launch C++ Debug 2",
+            "type": "cppdbg",
+            "request": "launch",
+            "program": "${workspaceFolder}/demiurgo.out", // Ruta al ejecutable generado
+            "args": [],
+            "stopAtEntry": false,
+            "cwd": "${workspaceFolder}",
+            "environment": [],
+            "externalConsole": false,
+            "MIMode": "gdb",
+            "setupCommands": [
+                {
+                    "description": "Enable pretty-printing for gdb",
+                    "text": "-enable-pretty-printing",
+                    "ignoreFailures": true
+                }
+            ],
+            "preLaunchTask": "build", // Nombre de la tarea de compilación definida en tasks.json
+            "miDebuggerPath": "/path/to/your/debugger", // Ruta al depurador (gdb, lldb, etc.)
+            "postDebugTask": "clean" // Nombre de la tarea de limpieza después de la depuración
+        },
+        {
+            "name": "Make C++",
+            "request": "launch",
+            "type": "shell",
+            "label": "C/C++: gcc build active file",
+            "command": "make",
+            "args": [],
+            "group": "build",
+            "presentation": {
+                "reveal": "silent"
+            },
+            "problemMatcher": "$gcc"
+        }
+    ]
+}

@@ -1,0 +1,25 @@
+{
+    "configurations": [
+        {
+            "name": "Linux",
+            "compilerPathInCppPropertiesJson": "/usr/bin/gcc",
+            "includePath": [
+                "/media/fzz/Aqueloo/Mein_Kode/ferminMZT_GH/demiurgo/**"
+            ],
+            "defines": [],
+            "cStandard": "c17",
+            "cppStandard": "gnu++14",
+            "intelliSenseMode": "linux-gcc-x64",
+            "mergeConfigurations": false,
+            "compilerPath": "/usr/bin/gcc",
+            "configurationProvider": "ms-vscode.makefile-tools",
+            "browse": {
+                "path": [
+                    "/media/fzz/Aqueloo/Mein_Kode/ferminMZT_GH/demiurgo"
+                ],
+                "limitSymbolsToIncludedHeaders": true
+            }
+        }
+    ],
+    "version": 4
+}
