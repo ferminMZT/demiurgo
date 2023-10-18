@@ -1,0 +1,5 @@
+# Ignorar archivos objeto (*.o)
+*.o
+
+# Ignorar el ejecutable demiurgo.out
+demiurgo.out
